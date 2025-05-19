@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const reactionFlask = document.getElementById('reaction-flask');
     const reactionContent = document.getElementById('reaction-content');
     const productBeaker = document.getElementById('product-beaker');
-    const productContent = document.getElementById('product-content');
     const productLabel = document.getElementById('product-label');
     const resultDiv = document.getElementById('result');
     const reactionDiagramDiv = document.getElementById('reactionDiagram');
+    const productLiquid = productBeaker.querySelector('#ani-liquid'); // Get the liquid element
 
     function updateBeakerContent(contentElement, labelElement, element) {
         labelElement.textContent = `${element} (${document.getElementById(contentElement.id.replace('-content', '')).value})`;
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let resultText = '';
         let reactionDiagramText = '';
         let productClass = '';
+        let productFillColor = '';
 
         // Simple reaction logic
         if (element1 === 'H' && element2 === 'O') {
@@ -68,10 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultText = 'Water (H₂O)';
                 reactionDiagramText = '2H₂ + O₂ → 2H₂O';
                 productClass = 'water';
+                productFillColor = 'lightblue';
                 animateReaction([
                     { element: 'hydrogen', quantity: Math.min(quantity1, 2), target: reactionFlask },
                     { element: 'oxygen', quantity: Math.min(quantity2, 1), target: reactionFlask }
-                ], productClass);
+                ], productClass, productFillColor);
             } else {
                 resultText = 'Not enough reactants for water.';
                 reactionDiagramText = '';
@@ -82,10 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultText = 'Sodium Chloride (NaCl)';
                 reactionDiagramText = '2Na + Cl₂ → 2NaCl'; // Simplified
                 productClass = 'sodium-chloride';
+                productFillColor = 'lightgray';
                 animateReaction([
                     { element: 'sodium', quantity: Math.min(quantity1, 1), target: reactionFlask },
                     { element: 'chlorine', quantity: Math.min(quantity2, 1), target: reactionFlask }
-                ], productClass);
+                ], productClass, productFillColor);
             } else {
                 resultText = 'Not enough reactants for sodium chloride.';
                 reactionDiagramText = '';
@@ -102,9 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
         productLabel.textContent = resultText ? resultText.split(' ')[0] : '';
     });
 
-    function animateReaction(reactants, productClass) {
+    function animateReaction(reactants, productClass, productFillColor) {
         reactionContent.className = 'content animate-mix'; // Start mixing animation
-        productContent.className = 'content'; // Clear previous product
+        // Clear previous product styles (important if product changes)
+        if (productLiquid) {
+            productLiquid.style.fill = '';
+            productLiquid.style.height = '0px';
+            productLiquid.style.y = '170px'; // Assuming initial y position
+        }
+        productContent.className = 'content';
 
         // Animate reactants moving to the flask (simplified)
         reactants.forEach(reactant => {
@@ -114,10 +123,21 @@ document.addEventListener('DOMContentLoaded', () => {
             reactionContent.classList.add(elementClass);
         });
 
-        // After a delay, show the product
+        // After a delay, show and animate the product
         setTimeout(() => {
             reactionContent.className = 'content'; // Stop mixing
             productContent.classList.add(productClass, 'animate-appear');
+            // Animate the liquid filling
+            if (productLiquid && productFillColor) {
+                productLiquid.style.fill = productFillColor;
+                anime({
+                    targets: productLiquid,
+                    height: '100px', // Adjust fill level as needed
+                    y: '70px',     // Adjust final y position
+                    duration: 1500, // Adjust animation duration
+                    easing: 'easeInOutQuad'
+                });
+            }
         }, 1500); // Adjust timing as needed
     }
 
