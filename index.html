@@ -7,7 +7,7 @@
     <title>Chemical Compound Mixer</title>
     <link rel="stylesheet" href="styles/chem.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-</head>
+
 </head>
 <body>
     <div class="container">
@@ -22,6 +22,7 @@
             </select>
             <input type="number" id="quantity1" placeholder="Quantity" min="1">
         </div>
+   
         <div>
             <label for="element2">Select Element 2:</label>
             <select id="element2">
@@ -35,6 +36,11 @@
         <button id="mixButton">Mix</button>
         <div id="result"></div>
         <div id="reactionDiagram"></div>
+        <div id="visuals">
+    <div id="reactants"></div>
+    <div id="reactionArea"></div>
+    <div id="products"></div>
+</div>
     </div>
     <script src="scripts/chem.js"></script>
 </body>

@@ -13,7 +13,6 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 h1 {
     text-align: center;
 }
@@ -28,7 +27,6 @@ input, select {
     padding: 10px;
     margin-bottom: 10px;
 }
-
 button {
     width: 100%;
     padding: 10px;
@@ -38,7 +36,6 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
 button:hover {
     background-color: #218838;
 }
@@ -46,11 +43,56 @@ button:hover {
 #result {
     margin-top: 20px;
     text-align: center;
- font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 #reactionDiagram {
     margin-top: 20px;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.2em;
+}
+
+#visuals {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+#reactants, #reactionArea, #products {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin: 10px; /* Add margin for spacing */
+}
+
+#reactionArea {
+    background-color: #f0f0f0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #visuals {
+        flex-direction: column; /* Stack visuals vertically on smaller screens */
+        align-items: center;
+    }
+
+    #reactants, #reactionArea, #products {
+        width: 80%; /* Make visuals wider on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em; /* Adjust heading size */
+    }
+
+button {
+    padding: 15px; /* Increase button padding */
+}
 }
