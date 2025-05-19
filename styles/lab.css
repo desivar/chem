@@ -109,71 +109,70 @@ button:hover {
     border-bottom: 3px solid #66bb6a;
 }
 
+咖啡色
 .beaker {
-    position: relative;
-    background-color: #f0f4c3; /* Light pastel green for a glass-like effect */
-    border: 2px solid #388e3c; /* Darker green for the border */
-    border-radius: 10px; /* Rounded corners */
-    width: 80px; /* Slightly wider for realism */
-    height: 220px; /* Taller for a more accurate beaker shape */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
-    background-image: linear-gradient(to bottom, #f0f4c3, #c5e1a5); /* Smooth gradient */
-    transition: transform 0.3s ease; /* Add a hover effect */
-}
-
-.beaker:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+position: relative;
+background-color: #f1f8e9; /* Very light green */
+border-left: 2px solid #66bb6a;
+border-right: 2px solid #66bb6a;
+border-bottom: 2px solid #66bb6a;
+border-top: 5px solid #66bb6a;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-left-radius: 7px;
+border-bottom-right-radius: 7px;
+width: 75px;
+height: 150px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-end;
+box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+background-image: linear-gradient(to bottom, #f1f8e9, #e0f2f7);
 }
 
 .beaker::before {
-    content: '';
-    position: absolute;
-    top: 10px; /* Adjusted for better alignment */
-    left: -5px; /* Slightly adjusted */
-    width: 12px; /* Thicker for better visibility */
-    height: 40px; /* Taller */
-    border: 2px solid #388e3c; /* Match the border color */
-    border-radius: 0 5px 5px 0; /* Rounded edges */
+content: '';
+position: absolute;
+top: 15px;
+left: -6px;
+width: 12px;
+height: 30px;
+border-top: 2px solid #66bb6a;
+border-left: 2px solid #66bb6a;
+border-bottom: 2px solid transparent;
+border-right: 2px solid transparent;
+border-radius: 0 3px 0 0;
 }
 
 .beaker::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%; /* Wider highlight */
-    height: 12px; /* Thicker highlight */
-    background-color: rgba(255, 255, 255, 0.4); /* More visible highlight */
-    border-radius: 50%;
+content: '';
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 65%;
+height: 6px;
+background-color: rgba(255, 255, 255, 0.2);
+border-radius: 50%;
 }
 
 .beaker .content {
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white */
-    width: 70%; /* Wider content area */
-    height: 60%; /* Taller content area */
-    border-radius: 5px 5px 0 0;
-    position: absolute;
-    bottom: 0;
-    opacity: 0.95; /* More opaque for better visibility */
-    transition: height 0.5s ease, background-color 0.5s ease;
+background-color: transparent;
+width: 60%;
+height: 40%;
+border-radius: 5px 5px 0 0;
+position: absolute;
+bottom: 0;
+opacity: 0.7;
+transition: height 0.5s ease, background-color 0.5s ease;
 }
+咖啡色
+
+
+
 
 /* Optional: Add a label for realism */
-.beaker .label {
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    color: #388e3c;
-    font-weight: bold;
-    text-align: center;
-}
 
 
 .info-panel {
