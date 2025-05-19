@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Compound Mixer</title>
+    <link rel="stylesheet" href="styles/chem.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chemical Compound Mixer</h1>
+        <div>
+            <label for="element1">Select Element 1:</label>
+            <select id="element1">
+                <option value="H">Hydrogen (H)</option>
+                <option value="O">Oxygen (O)</option>
+                <option value="Na">Sodium (Na)</option>
+                <option value="Cl">Chlorine (Cl)</option>
+            </select>
+            <input type="number" id="quantity1" placeholder="Quantity" min="1">
+        </div>
+        <div>
+            <label for="element2">Select Element 2:</label>
+            <select id="element2">
+                <option value="O">Oxygen (O)</option>
+                <option value="Cl">Chlorine (Cl)</option>
+                <option value="Na">Sodium (Na)</option>
+                <option value="H">Hydrogen (H)</option>
+            </select>
+            <input type="number" id="quantity2" placeholder="Quantity" min="1">
+        </div>
+        <button id="mixButton">Mix</button>
+        <div id="result"></div>
+    </div>
+    <script src="scripts/chem.js"></script>
+</body>
+</html>
