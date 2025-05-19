@@ -82,31 +82,39 @@ button:hover {
     position: relative;
 }
 
-.beaker, .flask {
+.flask {
     position: relative;
     background-color: #f1f8e9; /* Very light green */
-    border-left: 3px solid #66bb6a; /* Medium green border */
-    border-right: 3px solid #66bb6a;
-    border-bottom: 3px solid transparent; /* No bottom border initially */
+    border-left: 2px solid #66bb6a;
+    border-right: 2px solid #66bb6a;
+    border-bottom: 2px solid #66bb6a;
     border-top: 5px solid #66bb6a;
-    border-radius: 8px 8px 0 0;
-    width: 100px;
-    height: 150px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    width: 75px;
+    height: 130px; /* Adjust height to be slightly shorter */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    background-image: linear-gradient(to bottom, #f1f8e9, #e0f2f7);
 }
 
-.flask {
-    width: 80px;
-    height: 120px;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom: 3px solid #66bb6a;
+.flask::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -6px;
+    width: 12px;
+    height: 25px; /* Adjust height */
+    border-top: 2px solid #66bb6a;
+    border-left: 2px solid #66bb6a;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-radius: 0 3px 0 0;
 }
 
 咖啡色
