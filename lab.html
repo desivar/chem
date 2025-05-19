@@ -1,114 +1,56 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Virtual Chemical Lab</title>
-
     <link rel="stylesheet" href="styles/lab.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
 </head>
-
 <body>
-
     <div class="lab-container">
-
         <h1>🔬Virtual Chemical Lab🧪</h1>
-
-        <div class="controls">
-
+       <label for="element1">Element<select id="element1">
+       <option value="H">Hydrogen (H)</option>
+       <option value="O">Oxygen (O)</option>
+       <option value="Na">Sodium (Na)</option>
+       <option value="Cl">Chlorine (Cl)</option>
+       </select> 
+       <input type="number" id="quantity1" placeholder="Quantity" min="1" value="1">
+       </div>
             <div class="element-selection">
-
-                <label for="element1">Element🧪 1:</label>
-
-                <select id="element1">
-
-                    <option value="H">Hydrogen (H)</option>
-
-                    <option value="O">Oxygen (O)</option>
-
-                    <option value="Na">Sodium (Na)</option>
-
-                    <option value="Cl">Chlorine (Cl)</option>
-
-                </select>
-
-                <input type="number" id="quantity1" placeholder="Quantity" min="1" value="1">
-
-            </div>
-
-            <div class="element-selection">
-
                 <label for="element2">Element🧪 2:</label>
-
-                <select id="element2">
-
-                    <option value="O">Oxygen (O)</option>
-
+                <select id="element2">
+                 <option value="O">Oxygen (O)</option>
                     <option value="Cl">Chlorine (Cl)</option>
-
                     <option value="Na">Sodium (Na)</option>
-
                     <option value="H">Hydrogen (H)</option>
-
                 </select>
-
                 <input type="number" id="quantity2" placeholder="Quantity" min="1" value="1">
-
             </div>
-
-
-
-            <button id="mixButton">˚✧ ﾟMix˚✧ ﾟ.</button>
-
-        </div>
-
-        <div class="lab-bench">
-
-            <div id="reactant-beaker-1" class="beaker left">
-
-                <div class="label" id="reactant-label-1"></div>
-
-                <div class="content" id="reactant-content-1"></div>
-
-            </div>
-
+             <button id="mixButton">˚✧ ﾟMix˚✧ ﾟ.</button>
+            </div>
+            <div class="lab-bench">
+           <div id="reactant-beaker-1" class="beaker left">
+           <div class="label" id="reactant-label-1"></div>
+           <div class="content" id="reactant-content-1"></d>
+        </div>
             <div id="reaction-flask" class="beaker center">
-
                 <div class="content" id="reaction-content"></div>
-
             </div>
-
             <div id="product-beaker" class="beaker right">
-
                 <div class="label" id="product-label"></div>
-
                 <div class="content" id="product-content"></div>
-
             </div>
-
         </div>
-
         <div id="reaction-info" class="info-panel">
-
-            <div id="result"></div>
-
-            <div id="reactionDiagram"></div>
-
-        </div>
-
-    </div>
-
+        <div id="result"></d>
+        <div id="reactionDiagram"></div>
+        </div>
+         </div>
     <audio id="mixSound" src="/sounds/mix_sound.mp3" preload="auto"></audio>
-
-    <script src="scripts/lab.js"></script>
+   <script src="scripts/lab.js"></script>
 
 </body>
 
