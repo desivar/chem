@@ -111,30 +111,33 @@ button:hover {
 
 .beaker {
     position: relative;
-    background-color: #f1f8e9; /* Very light green */
-    border: 1px solid #66bb6a; /* Thinner border */
-    border-radius: 0 0 5px 5px; /* Rounded bottom corners */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 60px; /* Even narrower */
-    height: 180px; /* Taller */
+    background-color: #e8f5e9; /* Light green background */
+    border: 2px solid #4caf50; /* Thicker border for better visibility */
+    border-radius: 10px; /* Rounded corners for a softer look */
+    width: 70px; /* Slightly wider */
+    height: 200px; /* Taller for more visual impact */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.08);
-    background-image: linear-gradient(to bottom, #f1f8e9, #e0f2f7); /* Subtle gradient */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Softer shadow for depth */
+    background-image: linear-gradient(to bottom, #e8f5e9, #c8e6c9); /* Smooth gradient */
+    transition: transform 0.3s ease; /* Add a hover effect */
+}
+
+.beaker:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .beaker::before {
     content: '';
     position: absolute;
-    top: 15px;
-    left: -4px;
-    width: 8px;
-    height: 30px;
-    border: 1px solid #66bb6a;
-    border-radius: 0 2px 2px 0;
+    top: 10px; /* Adjusted for better alignment */
+    left: -5px; /* Slightly adjusted */
+    width: 10px; /* Thicker for better visibility */
+    height: 35px; /* Taller */
+    border: 2px solid #4caf50; /* Match the border color */
+    border-radius: 0 5px 5px 0; /* Rounded edges */
 }
 
 .beaker::after {
@@ -143,23 +146,22 @@ button:hover {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.2); /* Subtle highlight at the bottom */
+    width: 70%; /* Wider highlight */
+    height: 10px; /* Thicker highlight */
+    background-color: rgba(255, 255, 255, 0.3); /* More visible highlight */
     border-radius: 50%;
 }
 
 .beaker .content {
-    background-color: transparent;
-    width: 50%;
-    height: 40%;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white */
+    width: 60%; /* Wider content area */
+    height: 50%; /* Taller content area */
     border-radius: 5px 5px 0 0;
     position: absolute;
     bottom: 0;
-    opacity: 0.7;
+    opacity: 0.9; /* More opaque for better visibility */
     transition: height 0.5s ease, background-color 0.5s ease;
 }
-
 
 
 
