@@ -109,13 +109,7 @@ button:hover {
     border-bottom: 3px solid #66bb6a;
 }
 
-.beaker.left {
-    /* Adjust position if needed */
-}
-
-.beaker.right {
-    /* Adjust position if needed */
-}
+/* Removed empty .beaker.left and .beaker.right rulesets */
 
 .beaker::before {
     content: '';
