@@ -142,23 +142,35 @@ button:hover {
     border-radius: 0 0 8px 8px;
 }
 
-.beaker .label, .flask .label {
-    position: absolute;
-    top: -20px;
-    font-size: 0.85em;
-    color: #43a047;
-    font-weight: bold;
+.beaker {
+    position: relative;
+    background-color: #f1f8e9; /* Very light green */
+    border-left: 3px solid #66bb6a; /* Medium green border */
+    border-right: 3px solid #66bb6a;
+    border-bottom: 3px solid #66bb6a; /* Now with a bottom border */
+    border-top: 5px solid #66bb6a;
+    border-radius: 0 0 8px 8px; /* Rounded bottom */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 80px; /* Slightly narrower */
+    height: 160px; /* Slightly taller */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.08);
+    background-image: linear-gradient(to bottom, #f1f8e9, #e0f2f7); /* Subtle gradient */
 }
 
-.beaker .content, .flask .content {
-    background-color: transparent;
-    width: 60%;
-    height: 40%;
-    border-radius: 5px 5px 0 0;
+.beaker::before {
+    content: '';
     position: absolute;
-    bottom: 0;
-    opacity: 0.7;
-    transition: height 0.5s ease, background-color 0.5s ease;
+    top: 15px;
+    left: -6px;
+    width: 12px;
+    height: 25px;
+    border: 2px solid #66bb6a;
+    border-radius: 0 3px 3px 0;
 }
 
 .info-panel {
