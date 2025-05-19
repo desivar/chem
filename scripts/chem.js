@@ -24,8 +24,8 @@ document.getElementById('mixButton').addEventListener('click', function() {
             reactionDiagram = 'Na + Cl₂ → NaCl';
         } else {
             result = 'Not enough reactants for sodium chloride.';
-  }
-    } else {
+        }
+ } else {
         result = 'Invalid combination or insufficient quantities.';
     }
 
@@ -36,4 +36,36 @@ document.getElementById('mixButton').addEventListener('click', function() {
     // Display reaction diagram
     const reactionDiv = document.getElementById('reactionDiagram');
     reactionDiv.innerHTML = <div>${reactionDiagram}</div>;
+
+    // Animate the transition
+    animateReaction(result, color);
 });
+
+function animateReaction(result, color) {
+    const resultDiv = document.getElementById('result');
+    const reactionDiv = document.getElementById('reactionDiagram');
+
+    // Clear previous animations
+    resultDiv.style.opacity = 0;
+    reactionDiv.style.opacity = 0;
+
+// Animate the result display
+    anime({
+        targets: resultDiv,
+        opacity: [0, 1],
+        duration: 1000,
+        easing: 'easeInOutQuad',
+        complete: function() {
+            // Change color after animation
+            resultDiv.style.color = color;
+        }
+    });
+
+    // Animate the reaction diagram display
+    anime({
+        targets: reactionDiv,
+        opacity: [0, 1],
+        duration: 1000,
+        easing: 'easeInOutQuad'
+    });
+}
