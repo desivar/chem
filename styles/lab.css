@@ -109,16 +109,15 @@ button:hover {
     border-bottom: 3px solid #66bb6a;
 }
 
-/* Removed empty .beaker.left and .beaker.right rulesets */
 .beaker {
     position: relative;
     background-color: #f1f8e9; /* Very light green */
-    border: 2px solid #66bb6a; /* Medium green border */
-    border-radius: 5px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    width: 70px; /* Slightly narrower again */
-    height: 170px; /* A bit taller */
+    border: 1px solid #66bb6a; /* Thinner border */
+    border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 60px; /* Even narrower */
+    height: 180px; /* Taller */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,10 +130,10 @@ button:hover {
     content: '';
     position: absolute;
     top: 15px;
-    left: -5px;
-    width: 10px;
+    left: -4px;
+    width: 8px;
     height: 30px;
-    border: 2px solid #66bb6a;
+    border: 1px solid #66bb6a;
     border-radius: 0 2px 2px 0;
 }
 
@@ -144,11 +143,25 @@ button:hover {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.3); /* Subtle highlight at the bottom */
+    width: 60%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle highlight at the bottom */
     border-radius: 50%;
 }
+
+.beaker .content {
+    background-color: transparent;
+    width: 50%;
+    height: 40%;
+    border-radius: 5px 5px 0 0;
+    position: absolute;
+    bottom: 0;
+    opacity: 0.7;
+    transition: height 0.5s ease, background-color 0.5s ease;
+}
+
+
+
 
 .info-panel {
     margin-top: 30px;
