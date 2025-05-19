@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultDiv = document.getElementById('result');
     const reactionDiagramDiv = document.getElementById('reactionDiagram');
 
+    let reactantBeaker2 = null;
+    let reactantContent2 = null;
+    let reactantLabel2 = null;
+
     function updateBeakerContent(contentElement, labelElement, element) {
         labelElement.textContent = `${element} (${document.getElementById(contentElement.id.replace('-content', '')).value})`;
         contentElement.className = 'content';
@@ -27,29 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     element1Select.addEventListener('change', () => updateBeakerContent(reactantContent1, reactantLabel1, element1Select.value));
+
     element2Select.addEventListener('change', () => {
         const element2 = element2Select.value;
-        const beaker2 = document.createElement('div');
-        beaker2.id = 'reactant-beaker-2';
-        beaker2.classList.add('beaker', 'right');
-        const label2 = document.createElement('div');
-        label2.classList.add('label');
-        label2.id = 'reactant-label-2';
-        const content2 = document.createElement('div');
-        content2.classList.add('content');
-        content2.id = 'reactant-content-2';
 
-        // Simple logic to avoid adding the second beaker multiple times
-        if (!document.getElementById('reactant-beaker-2')) {
-            reactantBeaker1.parentNode.insertBefore(beaker2, reactionFlask);
-            beaker2.appendChild(label2);
-            beaker2.appendChild(content2);
-            updateBeakerContent(content2, label2, element2);
-        } else {
-            const existingLabel = document.getElementById('reactant-label-2');
-            const existingContent = document.getElementById('reactant-content-2');
-            updateBeakerContent(existingContent, existingLabel, element2);
+        if (!reactantBeaker2) {
+            reactantBeaker2 = document.createElement('div');
+            reactantBeaker2.id = 'reactant-beaker-2';
+            reactantBeaker2.classList.add('beaker', 'right');
+            reactantLabel2 = document.createElement('div');
+            reactantLabel2.classList.add('label');
+            reactantLabel2.id = 'reactant-label-2';
+            reactantContent2 = document.createElement('div');
+            reactantContent2.classList.add('content');
+            reactantContent2.id = 'reactant-content-2';
+
+            reactantBeaker2.appendChild(reactantLabel2);
+            reactantBeaker2.appendChild(reactantContent2);
+            reactantBeaker1.parentNode.insertBefore(reactantBeaker2, reactionFlask);
         }
+        updateBeakerContent(reactantContent2, reactantLabel2, element2);
     });
 
     mixButton.addEventListener('click', () => {
@@ -69,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 reactionDiagramText = '2H₂ + O₂ → 2H₂O';
                 productClass = 'water';
                 animateReaction([
-                    { element: 'hydrogen', quantity: Math.min(quantity1, 2), target: reactionFlask },
-                    { element: 'oxygen', quantity: Math.min(quantity2, 1), target: reactionFlask }
+                    { element: 'hydrogen', quantity: Math.min(quantity1, 2), source: reactantContent1, target: reactionContent },
+                    { element: 'oxygen', quantity: Math.min(quantity2, 1), source: reactantContent2, target: reactionContent }
                 ], productClass);
             } else {
                 resultText = 'Not enough reactants for water.';
@@ -83,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 reactionDiagramText = '2Na + Cl₂ → 2NaCl'; // Simplified
                 productClass = 'sodium-chloride';
                 animateReaction([
-                    { element: 'sodium', quantity: Math.min(quantity1, 1), target: reactionFlask },
-                    { element: 'chlorine', quantity: Math.min(quantity2, 1), target: reactionFlask }
+                    { element: 'sodium', quantity: Math.min(quantity1, 1), source: reactantContent1, target: reactionContent },
+                    { element: 'chlorine', quantity: Math.min(quantity2, 1), source: reactantContent2, target: reactionContent }
                 ], productClass);
             } else {
                 resultText = 'Not enough reactants for sodium chloride.';
@@ -100,31 +101,56 @@ document.addEventListener('DOMContentLoaded', () => {
         resultDiv.textContent = resultText;
         reactionDiagramDiv.textContent = reactionDiagramText;
         productLabel.textContent = resultText ? resultText.split(' ')[0] : '';
+        productContent.className = `content ${productClass} animate-appear`;
     });
 
     function animateReaction(reactants, productClass) {
         reactionContent.className = 'content animate-mix'; // Start mixing animation
-        productContent.className = 'content'; // Clear previous product
+        reactionContent.innerHTML = ''; // Clear previous reaction content
 
-        // Animate reactants moving to the flask (simplified)
         reactants.forEach(reactant => {
             const elementClass = reactant.element;
             const quantity = reactant.quantity;
-            // Basic visual representation in the flask
-            reactionContent.classList.add(elementClass);
+            const sourceElement = reactant.source;
+            const targetElement = reactant.target;
+
+            for (let i = 0; i < quantity; i++) {
+                const movingElement = document.createElement('div');
+                movingElement.className = `animate-pour ${elementClass}`;
+                const startRect = sourceElement.getBoundingClientRect();
+                const targetRect = targetElement.getBoundingClientRect();
+                document.body.appendChild(movingElement);
+
+                anime({
+                    targets: movingElement,
+                    left: [startRect.left + startRect.width / 2 - 10, targetRect.left + targetRect.width / 2 - 10],
+                    top: [startRect.top + startRect.height, targetRect.top + targetRect.height / 2],
+                    opacity: [1, 0.5],
+                    scale: [0.5, 1],
+                    duration: 800,
+                    easing: 'easeInOutQuad',
+                    complete: () => {
+                        targetElement.classList.add(elementClass); // Basic visual in flask
+                        movingElement.remove();
+                    }
+                });
+            }
         });
 
         // After a delay, show the product
         setTimeout(() => {
+            reactionContent.className = 'content animate-mix'; // Keep mixing style
+        }, 1000);
+
+        setTimeout(() => {
             reactionContent.className = 'content'; // Stop mixing
-            productContent.classList.add(productClass, 'animate-appear');
-        }, 1500); // Adjust timing as needed
+        }, 2500);
     }
 
     function animateError() {
         anime({
-            targets: [reactantBeaker1, document.getElementById('reactant-beaker-2') || reactantBeaker1, reactionFlask, productBeaker],
-            borderColor: ['#888', '#ff0000', '#888'],
+            targets: [reactantBeaker1, reactantBeaker2 || reactantBeaker1, reactionFlask, productBeaker],
+            borderColor: ['#66bb6a', '#ff0000', '#66bb6a'],
             duration: 500,
             easing: 'easeInOutSine',
         });
