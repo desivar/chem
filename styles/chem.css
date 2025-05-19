@@ -46,5 +46,11 @@ button:hover {
 #result {
     margin-top: 20px;
     text-align: center;
+ font-size: 1.2em;
+}
+
+#reactionDiagram {
+    margin-top: 20px;
+    text-align: center;
     font-size: 1.2em;
 }
