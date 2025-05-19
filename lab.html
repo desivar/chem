@@ -1,89 +1,129 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔬Virtual Chemical Lab🧪</title>
-    <link rel="stylesheet" href="styles/lab.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Virtual Chemical Lab</title>
+
+    <link rel="stylesheet" href="styles/lab.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
 </head>
+
 <body>
-    <div class="lab-container">
-        <h1>🔬Virtual Chemical Lab🧪</h1>
 
-        <div class="controls">
-            <div class="element-selection">
-                <label for="element1">Element🧪 1:</label>
-                <select id="element1">
-                    <option value="H">Hydrogen (H)</option>
-                    <option value="O">Oxygen (O)</option>
-                    <option value="Na">Sodium (Na)</option>
-                    <option value="Cl">Chlorine (Cl)</option>
-                </select>
-                <input type="number" id="quantity1" placeholder="Quantity" min="1" value="1">
-            </div>
+    <div class="lab-container">
 
-            <div class="element-selection">
-                <label for="element2">Element🧪 2:</label>
-                <select id="element2">
-                    <option value="O">Oxygen (O)</option>
-                    <option value="Cl">Chlorine (Cl)</option>
-                    <option value="Na">Sodium (Na)</option>
-                    <option value="H">Hydrogen (H)</option>
-                </select>
-                <input type="number" id="quantity2" placeholder="Quantity" min="1" value="1">
-            </div>
+        <h1>🔬Virtual Chemical Lab🧪</h1>
 
-            <button id="mixButton">˚✧ ﾟMix˚✧ ﾟ.</button>
-        </div>
 
-        <div class="lab-bench">
-            <div id="reactant-beaker-1" class="beaker left">
-                <div class="label" id="reactant-label-1"></div>
-                <div class="content" id="reactant-content-1"></div>
-            </div>
 
-            <div id="reaction-flask" class="beaker center">
-                <div class="content" id="reaction-content"></div>
-            </div>
+        <div class="controls">
 
-            <div id="product-beaker" class="beaker right">
-                <div class="wrapper">
-                    <div class="image-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200" id="product-beaker-svg">
-                            <defs>
-                                <clipPath id="a">
-                                    <path d="M144.561,150.353a8.294,8.294,0,0,1-6.993,4.147H64.11a7.5,7.5,0,0,1-6.832-3.859,6.345,6.345,0,0,1-.108-6.3c3.454-5.463,32.585-52.588,32.879-53.063l.451-.73V44.5h20V89.882l.456.733c.254.408,25.505,40.954,33.115,53.028A6.346,6.346,0,0,1,144.561,150.353Z" fill="none"/>
-                                </clipPath>
-                            </defs>
-                            <title>Azure_als-waiting-beaker_200x200</title>
-                            <path d="M100.058,2.485a97.981,97.981,0,1,0,97.981,97.981A97.981,97.981,0,0,0,100.058,2.485Z" fill="#87c4ee"/>
-                            <path d="M100.5,8.5a92,92,0,1,1-92,92,92.1,92.1,0,0,1,92-92m0-6a98,98,0,1,0,98,98,98,98,0,0,0-98-98Z" fill="#666"/>
-                            <path d="M144.561,150.353a8.294,8.294,0,0,1-6.993,4.147H64.11a7.5,7.5,0,0,1-6.832-3.859,6.345,6.345,0,0,1-.108-6.3c3.454-5.463,32.585-52.588,32.879-53.063l.451-.73V44.5h20V89.882l.456.733c.254.408,25.505,40.954,33.115,53.028A6.346,6.346,0,0,1,144.561,150.353Z" fill="#fff"/>
-                            <g clip-path="url(#a)">
-                                <rect id="ani-liquid" fill="#ffcb40" height="0px" width="100px" x="50px" y="170px" />
-                            </g>
-                            <path d="M149.192,140.41c-7.045-11.159-29.222-46.7-32.692-52.262V44.5h5.723a1.277,1.277,0,0,0,1.277-1.277V39.777a1.277,1.277,0,0,0-1.277-1.277H78.777A1.277,1.277,0,0,0,77.5,39.777v3.446A1.277,1.277,0,0,0,78.777,44.5H84.5V88.822c-3.726,6.017-29.24,47.213-32.446,52.275a12.268,12.268,0,0,0-.089,12.425A13.5,13.5,0,0,0,64.053,160.5h73.573a14.334,14.334,0,0,0,12.247-7.262A12.363,12.363,0,0,0,149.192,140.41Zm-4.631,9.943a8.294,8.294,0,0,1-6.993,4.147H64.11a7.5,7.5,0,0,1-6.832-3.859,6.345,6.345,0,0,1-.108-6.3c3.454-5.463,32.585-52.588,32.879-53.063l.451-.73V44.5h20V89.882l.456.733c.254.408,25.505,40.954,33.115,53.028A6.346,6.346,0,0,1,144.561,150.353Z" fill="#666"/>
-                            <ellipse id="ani-bubble1" cx="100" cy="100" rx="4" ry="4" fill="#fff" />
-                            <ellipse id="ani-bubble2" cx="110" cy="120" rx="6" ry="6" fill="#fff" />
-                            <ellipse id="ani-bubble3" cx="90" cy="130" rx="6" ry="6" fill="#fff" />
-                            <ellipse id="ani-bubble4" cx="120" cy="140" rx="4" ry="4" fill="#fff" />
-                        </svg>
-                    </div>
-                
-                </div>
-                <div class="label" id="product-label"></div>
-                <div class="content" id="product-content"></div>
-            </div>
-        </div>
+            <div class="element-selection">
 
-        <div id="reaction-info" class="info-panel">
-            <div id="result"></div>
-            <div id="reactionDiagram"></div>
-        </div>
-    </div>
+                <label for="element1">Element🧪 1:</label>
 
-    <audio id="mixSound" src="/sounds/mix_sound.mp3" preload="auto"></audio>
-    <script src="scripts/lab.js"></script>
+                <select id="element1">
+
+                    <option value="H">Hydrogen (H)</option>
+
+                    <option value="O">Oxygen (O)</option>
+
+                    <option value="Na">Sodium (Na)</option>
+
+                    <option value="Cl">Chlorine (Cl)</option>
+
+                </select>
+
+                <input type="number" id="quantity1" placeholder="Quantity" min="1" value="1">
+
+            </div>
+
+
+
+            <div class="element-selection">
+
+                <label for="element2">Element🧪 2:</label>
+
+                <select id="element2">
+
+                    <option value="O">Oxygen (O)</option>
+
+                    <option value="Cl">Chlorine (Cl)</option>
+
+                    <option value="Na">Sodium (Na)</option>
+
+                    <option value="H">Hydrogen (H)</option>
+
+                </select>
+
+                <input type="number" id="quantity2" placeholder="Quantity" min="1" value="1">
+
+            </div>
+
+
+
+            <button id="mixButton">˚✧ ﾟMix˚✧ ﾟ.</button>
+
+        </div>
+
+
+
+        <div class="lab-bench">
+
+            <div id="reactant-beaker-1" class="beaker left">
+
+                <div class="label" id="reactant-label-1"></div>
+
+                <div class="content" id="reactant-content-1"></div>
+
+            </div>
+
+
+
+            <div id="reaction-flask" class="beaker center">
+
+                <div class="content" id="reaction-content"></div>
+
+            </div>
+
+
+
+            <div id="product-beaker" class="beaker right">
+
+                <div class="label" id="product-label"></div>
+
+                <div class="content" id="product-content"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div id="reaction-info" class="info-panel">
+
+            <div id="result"></div>
+
+            <div id="reactionDiagram"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <audio id="mixSound" src="/sounds/mix_sound.mp3" preload="auto"></audio>
+
+    <script src="scripts/lab.js"></script>
+
 </body>
+
 </html>
