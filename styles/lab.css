@@ -110,44 +110,15 @@ button:hover {
 }
 
 /* Removed empty .beaker.left and .beaker.right rulesets */
-
-.beaker::before {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: -8px;
-    width: 16px;
-    height: 25px;
-    border: 2px solid #66bb6a;
-    border-radius: 0 4px 4px 0;
-}
-
-.flask::before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 25px;
-    height: 18px;
-    border-left: 2px solid #66bb6a;
-    border-right: 2px solid #66bb6a;
-    border-top: 2px solid #66bb6a;
-    border-radius: 0 0 8px 8px;
-}
-
 .beaker {
     position: relative;
     background-color: #f1f8e9; /* Very light green */
-    border-left: 3px solid #66bb6a; /* Medium green border */
-    border-right: 3px solid #66bb6a;
-    border-bottom: 3px solid #66bb6a; /* Now with a bottom border */
-    border-top: 5px solid #66bb6a;
-    border-radius: 0 0 8px 8px; /* Rounded bottom */
+    border: 2px solid #66bb6a; /* Medium green border */
+    border-radius: 5px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    width: 80px; /* Slightly narrower */
-    height: 160px; /* Slightly taller */
+    width: 70px; /* Slightly narrower again */
+    height: 170px; /* A bit taller */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,11 +131,23 @@ button:hover {
     content: '';
     position: absolute;
     top: 15px;
-    left: -6px;
-    width: 12px;
-    height: 25px;
+    left: -5px;
+    width: 10px;
+    height: 30px;
     border: 2px solid #66bb6a;
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 2px 2px 0;
+}
+
+.beaker::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.3); /* Subtle highlight at the bottom */
+    border-radius: 50%;
 }
 
 .info-panel {
