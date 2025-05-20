@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const reactionDiagramDiv = document.getElementById('reactionDiagram');
 
 
-
     function updateBeakerContent(contentElement, labelElement, element) {
 
         labelElement.textContent = `${element} (${document.getElementById(contentElement.id.replace('-content', '')).value})`;
@@ -49,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else contentElement.style.backgroundColor = 'transparent'; // Clear previous
 
     }
-
 
 
     element1Select.addEventListener('change', () => updateBeakerContent(reactantContent1, reactantLabel1, element1Select.value));
@@ -121,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let productClass = '';
 
 
-
         // Simple reaction logic
 
         if (element1 === 'H' && element2 === 'O') {
@@ -191,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-
         resultDiv.textContent = resultText;
 
         reactionDiagramDiv.textContent = reactionDiagramText;
@@ -201,13 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-
     function animateReaction(reactants, productClass) {
 
         reactionContent.className = 'content animate-mix'; // Start mixing animation
 
         productContent.className = 'content'; // Clear previous product
-
 
 
         // Animate reactants moving to the flask (simplified)
@@ -225,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 
-
         // After a delay, show the product
 
         setTimeout(() => {
@@ -237,8 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500); // Adjust timing as needed
 
     }
-
-
 
     function animateError() {
 
