@@ -15,7 +15,7 @@ min-height: 100vh;
 
 .lab-container {
 
- background-color: black;
+ background-color: #fff;
  padding: 40px;
  border-radius: 12px;
  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Stronger shadow */
