@@ -257,3 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+// Play sound effect
+    const mixSound = new Audio('sounds/mix_sound.mp3'); // Ensure this is defined here or globally
+    mixSound.play();
