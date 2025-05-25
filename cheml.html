@@ -31,6 +31,16 @@
                 </select>
                 <input type="number" id="quantity2" placeholder="Quantity" min="1" value="1">
             </div>
+            <div class="element-selection">
+                <label for="element3">Element 🧪 3:</label>
+                <select id="element3">
+                    <option value="">None</option> <option value="H">Hydrogen (H)</option>
+                    <option value="O">Oxygen (O)</option>
+                    <option value="Na">Sodium (Na)</option>
+                    <option value="Cl">Chlorine (Cl)</option>
+                </select>
+                <input type="number" id="quantity3" placeholder="Quantity" min="0" value="0">
+            </div>
             <button id="mixButton">˚⋆°˖ ～Mix˚⋆°˖ ～</button>
         </div>
         <div class="lab-bench">
@@ -38,8 +48,15 @@
                 <div class="label" id="reactant-label-1"></div>
                 <div class="content" id="reactant-content-1"></div>
             </div>
-            <div id="reaction-flask" class="beaker center">
-                <div class="content" id="reaction-content"></div>
+            <div id="reactant-beaker-2" class="beaker middle-left">
+                <div class="label" id="reactant-label-2"></div>
+                <div class="content" id="reactant-content-2"></div>
+            </div>
+            <div id="reactant-beaker-3" class="beaker middle-right">
+                <div class="label" id="reactant-label-3"></div>
+                <div class="content" id="reactant-content-3"></div>
+            </div>
+            <div id="reaction-flask" class="beaker center"> <div class="content" id="reaction-content"></div>
             </div>
             <div id="product-beaker" class="beaker right">
                 <div class="label" id="product-label"></div>
@@ -49,14 +66,10 @@
         <div id="reaction-info" class="info-panel">
             <div id="result"></div>
             <div id="reactionDiagram"></div>
-            <div id="product-image"></div> <!-- New div for product image -->
+            <div id="product-image"></div>
         </div>
     </div>
     
     <script src="scripts/lbas1.js"></script>
 </body>
 </html>
-
-
-    
-    
