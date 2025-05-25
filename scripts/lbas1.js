@@ -89,11 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (element1 === 'Na' && element2 === 'Cl') {
             if (quantity1 >= 1 && quantity2 >= 1) {
-                resultText = 'Sodium Chloride (NaCl)';
+                resultText = 'Salt (NaCl)';
                 color = 'white';
                 reactionDiagramText = 'Na + Cl₂ → NaCl';
-                productImage = 'images/sodium_chloride.png'; // Path to sodium chloride image
-                productClass = 'sodium-chloride';
+                productImage = 'images/salt.png'; // Path to sodium chloride image
+                productClass = 'salt';
             } else {
                 resultText = 'Not enough reactants for sodium chloride.';
                 color = 'red'; // Error color

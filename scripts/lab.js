@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const productLabel = document.getElementById('product-label');
     const resultDiv = document.getElementById('result');
     const reactionDiagramDiv = document.getElementById('reactionDiagram');
+    const productImageDiv = document.getElementById('product-image'); // New div for product image
 
-    function updateBeakerContent(contentElement, labelElement, element) {
-        labelElement.textContent = `${element} (${document.getElementById(contentElement.id.replace('-content', '')).value})`;
+    function updateBeakerContent(contentElement, labelElement, element, quantity) {
+        labelElement.textContent = `${element} (${quantity})`;
         contentElement.className = 'content';
         if (element === 'H') contentElement.classList.add('hydrogen');
         else if (element === 'O') contentElement.classList.add('oxygen');
@@ -25,10 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
         else contentElement.style.backgroundColor = 'transparent'; // Clear previous
     }
 
-    element1Select.addEventListener('change', () => updateBeakerContent(reactantContent1, reactantLabel1, element1Select.value));
+    element1Select.addEventListener('change', () => {
+        const selectedElement = element1Select.value;
+        const quantity = quantity1Input.value; // Get the quantity from the input
+        updateBeakerContent(reactantContent1, reactantLabel1, selectedElement, quantity);
+    });
 
     element2Select.addEventListener('change', () => {
         const element2 = element2Select.value;
+
+        // Check if the second element is Chlorine and the first is Sodium
+        if (element1Select.value === 'Na' && element2 === 'Cl' && document.getElementById('reactant-beaker-2')) {
+            // Do not create a new beaker if it already exists
+            return;
+        }
+
         const beaker2 = document.createElement('div');
         beaker2.id = 'reactant-beaker-2';
         beaker2.classList.add('beaker', 'right');
@@ -44,11 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
             reactantBeaker1.parentNode.insertBefore(beaker2, reactionFlask);
             beaker2.appendChild(label2);
             beaker2.appendChild(content2);
-            updateBeakerContent(content2, label2, element2);
+            updateBeakerContent(content2, label2, element2, quantity2Input.value); // Pass quantity
         } else {
             const existingLabel = document.getElementById('reactant-label-2');
             const existingContent = document.getElementById('reactant-content-2');
-            updateBeakerContent(existingContent, existingLabel, element2);
+            updateBeakerContent(existingContent, existingLabel, element2, quantity2Input.value); // Pass quantity
         }
     });
 
@@ -60,45 +72,59 @@ document.addEventListener('DOMContentLoaded', () => {
         let resultText = '';
         let reactionDiagramText = '';
         let productClass = '';
+        let productImage = '';
+        let color = '';
 
         // Simple reaction logic
         if (element1 === 'H' && element2 === 'O') {
             if (quantity1 >= 2 && quantity2 >= 1) {
                 resultText = 'Water (H₂O)';
+                color = 'blue';
                 reactionDiagramText = '2H₂ + O₂ → 2H₂O';
+                productImage = 'images/water.png'; // Path to water image
                 productClass = 'water';
-                animateReaction([
-                    { element: 'hydrogen', quantity: Math.min(quantity1, 2), target: reactionFlask },
-                    { element: 'oxygen', quantity: Math.min(quantity2, 1), target: reactionFlask }
-                ], productClass);
             } else {
                 resultText = 'Not enough reactants for water.';
-                reactionDiagramText = '';
-                animateError();
+                color = 'red'; // Error color
             }
         } else if (element1 === 'Na' && element2 === 'Cl') {
             if (quantity1 >= 1 && quantity2 >= 1) {
                 resultText = 'Sodium Chloride (NaCl)';
-                reactionDiagramText = '2Na + Cl₂ → 2NaCl'; // Simplified
+                color = 'white';
+                reactionDiagramText = 'Na + Cl₂ → NaCl';
+                productImage = 'images/salt.png'; // Path to sodium chloride image
                 productClass = 'sodium-chloride';
-                animateReaction([
-                    { element: 'sodium', quantity: Math.min(quantity1, 1), target: reactionFlask },
-                    { element: 'chlorine', quantity: Math.min(quantity2, 1), target: reactionFlask }
-                ], productClass);
             } else {
                 resultText = 'Not enough reactants for sodium chloride.';
-                reactionDiagramText = '';
-                animateError();
+                color = 'red'; // Error color
             }
         } else {
             resultText = 'Invalid combination or insufficient quantities.';
-            reactionDiagramText = '';
-            animateError();
+            color = 'red'; // Error color
         }
 
+        // Update the result and reaction diagram
         resultDiv.textContent = resultText;
+        resultDiv.style.color = color; // Change text color based on result
         reactionDiagramDiv.textContent = reactionDiagramText;
         productLabel.textContent = resultText ? resultText.split(' ')[0] : '';
+
+        // Show product image if reaction is successful
+        if (productImage) {
+            productImageDiv.innerHTML = `<img src="${productImage}" alt="${resultText}" />`;
+        } else {
+            productImageDiv.innerHTML = ''; // Clear image if no product
+        }
+
+        // Animate the reaction if successful
+        if (productClass) {
+            animateReaction([
+                { element: element1.toLowerCase(), quantity: Math.min(quantity1, 2), target: reactionFlask },
+                { element: element2.toLowerCase(), quantity: Math.min(quantity2, 1), target: reactionFlask }
+            ], productClass);
+        } else {
+            animateError();
+        }
     });
 
     function animateReaction(reactants, productClass) {
@@ -130,4 +156,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Play sound effect
 const mixSound = new Audio('sounds/mix_sound.mp3'); // Ensure this is defined here or globally
-mixSound.play();
