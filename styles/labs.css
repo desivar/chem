@@ -1,325 +1,286 @@
 body {
-
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-color: #e8f5e9; /* Light green background */
-margin: 0;
-padding: 30px;
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e8f5e9; /* Light green background */
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .lab-container {
-
-background-color: #ffffff;
-padding: 40px;
-border-radius: 12px;
-box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-text-align: center;
-width: 90%;
-max-width: 1000px;
-
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    text-align: center;
+    width: 90%;
+    max-width: 1200px; /* Increased max-width for more beakers */
 }
 
 h1 {
-
-margin-bottom: 30px;
-color: #2e7d32; /* Darker green title */
-font-size: 2.8em;
-
+    margin-bottom: 30px;
+    color: #2e7d32; /* Darker green title */
+    font-size: 2.8em;
 }
 
 .controls {
-display: flex;
-gap: 30px;
-margin-bottom: 40px;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .element-selection {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 label {
-margin-bottom: 8px;
-color: #388e3c; /* Green label */
-font-weight: bold;
-
+    margin-bottom: 8px;
+    color: #388e3c; /* Green label */
+    font-weight: bold;
 }
 
 select, input[type="number"] {
-padding: 12px;
-border: 1px solid #81c784; /* Light green border */
-border-radius: 6px;
-width: 180px;
-margin-bottom: 15px;
-font-size: 1em;
-
+    padding: 12px;
+    border: 1px solid #81c784; /* Light green border */
+    border-radius: 6px;
+    width: 180px;
+    margin-bottom: 15px;
+    font-size: 1em;
 }
 
 button {
-padding: 15px 30px;
-background-color: #43a047; /* Medium green button */
-color: white;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-font-size: 1.1em;
-transition: background-color 0.3s ease, transform 0.2s ease;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
+    padding: 15px 30px;
+    background-color: #43a047; /* Medium green button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-
 button:hover {
-background-color: #388e3c; /* Darker green hover */
-transform: translateY(-2px);
-
+    background-color: #388e3c; /* Darker green hover */
+    transform: translateY(-2px);
 }
 
 .lab-bench {
-display: flex;
-justify-content: space-around;
-align-items: flex-end;
-margin-bottom: 40px;
-position: relative;
-
+    display: flex;
+    justify-content: center; /* Center the group of beakers */
+    gap: 20px; /* Space between beakers */
+    align-items: flex-end;
+    margin-bottom: 40px;
+    position: relative;
+    overflow-x: auto; /* Allow horizontal scrolling if many beakers */
+    padding-bottom: 10px; /* Space for scrollbar if needed */
 }
 
-.flask {
+/* Base style for beaker and flask - combined for consistency */
+.beaker, .flask {
+    position: relative;
+    border: 2px solid #66bb6a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
 
-position: relative;
-background-color: #f1f8e9; /* Very light green */
-border-left: 2px solid #66bb6a;
-border-right: 2px solid #66bb6a;
-border-bottom: 2px solid #66bb6a;
-border-top: 5px solid #66bb6a;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-border-bottom-left-radius: 7px;
-border-bottom-right-radius: 7px;
-width: 75px;
-height: 130px; /* Adjust height to be slightly shorter */
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: flex-end;
-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-background-image: linear-gradient(to bottom, #f1f8e9, #6aaaba);
-
-}
-
-.flask::before {
-content: '';
-position: absolute;
-top: 15px;
-left: -6px;
-width: 12px;
-height: 25px; /* Adjust height */
-border-top: 2px solid #66bb6a;
-border-left: 2px solid #66bb6a;
-border-bottom: 2px solid transparent;
-border-right: 2px solid transparent;
-border-radius: 0 3px 0 0;
-
+    /* Improved glass appearance */
+    background-color: #ebf1e4; /* Fallback for older browsers */
+    background-image:
+        linear-gradient(to top, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.3) 100%), /* Highlights */
+        linear-gradient(to bottom, #d4f2d7, #a8d5af); /* Base glass color */
+    background-blend-mode: overlay; /* Blend the highlights with the base color */
 }
 
 .beaker {
-position: relative;
-background-color: #ebf1e4; /* Very light green */
-border: 2px solid #66bb6a;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-border-bottom-left-radius: 7px;
-border-bottom-right-radius: 7px;
-width: 85px; /* Wider */
-height: 140px; /* Shorter */
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: flex-end;
-box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-background-image: linear-gradient(to bottom, #f1f8e9, #b8eaf8);
-
+    width: 85px; /* Wider */
+    height: 140px; /* Shorter */
 }
 
 .beaker::before {
-content: '';
-position: absolute;
-top: 15px;
-left: -8px;
-width: 14px;
-height: 35px;
-border-left: 2px solid #66bb6a;
-border-top-left-radius: 3px;
-border-bottom-left-radius: 3px;
-
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -8px;
+    width: 14px;
+    height: 35px;
+    border-left: 2px solid #66bb6a;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 .beaker::after {
-content: '';
-position: absolute;
-bottom: 0;
-left: 50%;
-transform: translateX(-50%);
-width: 65%;
-height: 6px;
-background-color: rgba(255, 255, 255, 0.2);
-border-radius: 50%;
-
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
 }
 
-.beaker .content {
-background-color: transparent;
-width: 60%;
-height: 40%;
-border-radius: 5px 5px 0 0;
-position: absolute;
-bottom: 0;
-opacity: 0.7;
-transition: height 0.5s ease, background-color 0.5s ease;
+.flask {
+    width: 75px;
+    height: 130px;
+    /* Specific flask spout styling */
+    border-top: 5px solid #66bb6a; /* Thicker top for flask opening */
+}
 
+.flask::before { /* Flask spout */
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -6px;
+    width: 12px;
+    height: 25px;
+    border-top: 2px solid #66bb6a;
+    border-left: 2px solid #66bb6a;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-radius: 0 3px 0 0;
+}
+
+/* Content inside beakers/flask */
+.beaker .content, .flask .content {
+    background-color: transparent;
+    width: 60%;
+    height: 40%;
+    border-radius: 5px 5px 0 0;
+    position: absolute;
+    bottom: 0;
+    opacity: 0.7; /* Default opacity for liquids */
+    transition: height 0.5s ease, background-color 0.5s ease, opacity 0.3s ease; /* Added opacity transition */
 }
 
 /* Optional: Add a label for realism */
-
-.info-panel {
-margin-top: 30px;
-color: #388e3c;
-text-align: center;
-
+.label {
+    position: absolute;
+    top: 5px;
+    font-size: 0.8em;
+    color: #4CAF50;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
 }
 
+.info-panel {
+    margin-top: 30px;
+    color: #388e3c;
+    text-align: center;
+}
 
 #result {
-font-size: 1.6em;
-font-weight: bold;
-margin-bottom: 15px;
-color: #2e7d32;
-
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #2e7d32;
 }
 
 #reactionDiagram {
-font-size: 1.1em;
-color: #43a047;
-
+    font-size: 1.1em;
+    color: #43a047;
 }
 
 /* Specific styles for element visuals */
-
 .content.hydrogen {
-
-background-color: rgba(164, 209, 247, 0.7); /* Light blue */
-
+    background-color: rgba(164, 209, 247, 0.7); /* Light blue */
 }
 
 .content.oxygen {
-
-background-color: rgba(255, 183, 77, 0.7); /* Light orange */
-
+    background-color: rgba(255, 183, 77, 0.7); /* Light orange */
 }
 
 .content.sodium {
-
-background-color: rgba(255, 237, 148, 0.7); /* Light yellow */
-
+    background-color: rgba(255, 237, 148, 0.7); /* Light yellow */
 }
 
 .content.chlorine {
-
-background-color: rgba(179, 229, 205, 0.7); /* Light teal */
-
+    background-color: rgba(179, 229, 205, 0.7); /* Light teal */
 }
 
 /* Specific styles for product visuals */
-
 .content.water {
-
-background-color: rgba(47, 197, 213, 0.932); /* Brighter blue */
-
+    background-color: rgba(47, 197, 213, 0.932); /* Brighter blue */
 }
 
 .content.salt {
-
-background-color: rgba(242, 236, 236, 0.882); /* Off-white */
-border-top: 2px dotted #9e9e9e; /* Gray dotted top */
-
+    background-color: rgba(242, 236, 236, 0.882); /* Off-white */
+    border-top: 2px dotted #9e9e9e; /* Gray dotted top */
 }
 
+/* New product specific class example */
+.content.hydrogen-peroxide {
+    background-color: rgba(173, 216, 230, 0.9); /* Light blue for H2O2 */
+}
+
+
 /* Animation classes */
-
 .animate-pour {
-position: absolute;
-bottom: 0;
-width: 60%;
-background-color: rgba(100, 149, 237, 0.8); /* Cornflower blue */
-border-radius: 5px 5px 0 0;
-opacity: 0.8;
-transform-origin: bottom center;
-
+    position: absolute;
+    bottom: 0;
+    width: 60%; /* This width should match the .content width */
+    height: 40%; /* Initial height, will be animated to 0% */
+    border-radius: 5px 5px 0 0;
+    opacity: 0.8;
+    transform-origin: bottom center;
+    z-index: 10; /* Ensure it's above other content during animation */
 }
 
 .animate-mix {
-
-animation: gentle-swirl 1.5s ease-in-out infinite alternate;
-
+    animation: gentle-swirl 1.5s ease-in-out infinite alternate;
 }
-
 
 .animate-appear {
-
-animation: slide-up 0.5s ease-out forwards;
-
+    animation: slide-up 0.5s ease-out forwards;
 }
-
 
 @keyframes gentle-swirl {
-  from {
-    transform: rotate(-2deg) scale(0.98);
-  }
-  to {
-    transform: rotate(2deg) scale(1.02);
-  }
+    from {
+        transform: rotate(-2deg) scale(0.98);
+    }
+    to {
+        transform: rotate(2deg) scale(1.02);
+    }
 }
-
-
 
 @keyframes slide-up {
-
- from {
-
- opacity: 0;
-transform: translateY(20px);
-
- }
-
- to {
-
- opacity: 0.7;
- transform: translateY(0);
-
-}
-
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 0.9; /* Slightly more opaque product */
+        transform: translateY(0);
+    }
 }
 
 /* New styles for product image */
-
 #product-image {
- margin-top: 20px; /* Space above the image */
-
+    margin-top: 20px; /* Space above the image */
 }
 
 #product-image img {
+    max-width: 60px; /* Slightly larger image */
+    height: auto;
+    margin-top: 10px;
+    transition: transform 0.3s ease; /* Smooth transition for image */
+}
 
-max-width: 50px; /* Adjust size as needed */
-margin-top: 10px; /* Space above the image */
-
+#product-image img:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
 }
